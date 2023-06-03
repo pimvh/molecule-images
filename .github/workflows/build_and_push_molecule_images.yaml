@@ -29,19 +29,19 @@ jobs:
           sudo apt update
           sudo apt install podman
 
-      - name: Build image ${{ os }} ${{ version }}
+      - name: Build image ${{ matrix.os }} ${{ matrix.version }}
         run: |
-          IMAGE_ID=quay.io/${{ github.repository_owner }}/molecule-${{ os }}-${{ version }}
+          IMAGE_ID=quay.io/${{ github.repository_owner }}/molecule-${{ matrix.os }}-${{ matrix.version }}
 
           # replace the build date label
-          sed -i 's/!!REPLACE_DATE/'"$(date)"'/' "${{ os }}/${{ version }}"
+          sed -i 's/!!REPLACE_DATE/'"$(date)"'/' "${{ matrix.os }}/${{ matrix.version }}"
 
           # actually build the image
-          podman build -t $IMAGE_ID:latest -t $IMAGE_ID:${{ github.sha }} ${{ os }}/${{ version }} --label "runnumber=${GITHUB_RUN_ID}"
+          podman build -t $IMAGE_ID:latest -t $IMAGE_ID:${{ github.sha }} ${{ matrix.os }}/${{ matrix.version }} --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Login to registry and Push image
         run: |
-          IMAGE_ID=quay.io/${{ github.repository_owner }}/molecule-${{ os }}-${{ version }}
+          IMAGE_ID=quay.io/${{ github.repository_owner }}/molecule-${{ matrix.os }}-${{ matrix.version }}
 
           podman login quay.io -u ${{ github.repository_owner }} -p="${{ secrets.QUAY_LOGIN }}"
           podman push $IMAGE_ID:latest
