@@ -27,7 +27,7 @@ jobs:
           sudo apt update
           sudo apt install podman
 
-      - name: Build image ${{ matrix.system.os }} ${{ matrix.version }}
+      - name: Build image ${{ matrix.system.os }} ${{ matrix.system.version }}
         run: |
           IMAGE_ID=quay.io/${{ github.repository_owner }}/molecule-${{ matrix.system.os }}-${{ matrix.version }}
 
@@ -35,7 +35,7 @@ jobs:
           sed -i 's/!!REPLACE_DATE/'"$(date)"'/' "${{ matrix.system.os }}/${{ matrix.system.version }}/Dockerfile"
 
           # actually build the image
-          podman build -t $IMAGE_ID:latest -t $IMAGE_ID:${{ github.sha }} ${{ matrix.system.os }}/${{ matrix.version }} --label "runnumber=${GITHUB_RUN_ID}"
+          podman build -t $IMAGE_ID:latest -t $IMAGE_ID:${{ github.sha }} ${{ matrix.system.os }}/${{ matrix.system.version }} --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Login to registry and Push image
         run: |
