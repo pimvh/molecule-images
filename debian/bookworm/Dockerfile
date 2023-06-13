@@ -41,10 +41,10 @@ RUN set -xe \
   && sed -i "/^%${SUDO_GROUP}/s/ALL\$/NOPASSWD:ALL/g" /etc/sudoers
 
 # Upgrade pip to latest version to avoid wheel / cryptography issues
-RUN pip3 install --upgrade pip
+RUN pip3 install --break-system-packages --upgrade pip
 
 # Install Ansible via pip.
-RUN pip3 install ansible-core ansible-lint cryptography
+RUN pip3 install --break-system-packages ansible-core ansible-lint cryptography
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
