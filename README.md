@@ -6,5 +6,7 @@ Docker image used for testing ansible roles with molecule
 
 | OS Name      | OS version | Directory                | Status |
 |--------------|------------|------------------------  | ------ |
-| Ubuntu       | 22.04.2    | /ubuntu/jammy-jellyfish  | [![Build status](https://quay.io/repository/pimvh/molecule-ubuntu-jammy-jellyfish/status "Docker Repository on Quay")](https://quay.io/repository/pimvh/molecule-ubuntu-jammy-jellyfish) |
-| Debian       | 12.0       | /debian/bookworm  | [![Build status](https://quay.io/repository/pimvh/molecule-debian-bookworm/status "Docker Repository on Quay")](https://quay.io/repository/pimvh/molecule-debian-bookworm) |
+
+[![Container image](https://img.shields.io/badge/container-quay.io-blue)]
+| Ubuntu       | 22.04.2    | /ubuntu/jammy-jellyfish  | [![Build status](https://img.shields.io/badge/container-quay.io-blue)](https://quay.io/repository/pimvh/molecule-ubuntu-jammy-jellyfish) |
+| Debian       | 12.0       | /debian/bookworm  | [![Build status](https://img.shields.io/badge/container-quay.io-blue)](https://quay.io/repository/pimvh/molecule-debian-bookworm) |
